@@ -36,6 +36,15 @@ public class MusicPlaylist {
         // 1. Create a new array twice the size of the current one
         // 2. Copy all songs from the old array to the new array
         // 3. Update the songs reference to point to the new array
+        if (count*0.8> songs.length){
+            String[] temp = new String[songs.length *2];
+            for(int i = 0; i< songs.length; i++){
+                temp[i] = songs[i];
+
+            }
+            songs =  temp;
+        }
+        
     }
     
     // INSERT song at specific position
@@ -47,6 +56,17 @@ public class MusicPlaylist {
         // 2. Shift all songs from position to the right
         // 3. Place the new song at the position
         // 4. Increment count
+        if (count == songs.length){
+            this.resizeArray();
+        }
+        for (int i = count; i> position; i--){
+            songs[i] = songs[i-1];
+            
+
+        }
+        songs[position] = title;
+        count++;
+
     }
     
     // REMOVE song at specific position
@@ -56,6 +76,11 @@ public class MusicPlaylist {
         // TODO: Implement remove
         // 1. Shift all songs after position to the left
         // 2. Decrement count
+        for( int i =position; i <=count; i++){
+            songs[i] = songs[i+1];
+
+        }
+        count --;
     }
     
     // Display all songs
@@ -88,5 +113,6 @@ public class MusicPlaylist {
         System.out.println("\nAfter removing song at position 1:");
         myPlaylist.removeSong(1);
         myPlaylist.displayPlaylist();
+
     }
 }
